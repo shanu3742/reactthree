@@ -42,14 +42,14 @@ const GalaxyGenerator = () => {
         particlesMaterial.alphaMap=image;
         particlesMaterial.depthWrite=false;
         particlesMaterial.blending=  THREE.AdditiveBlending;
-        const particleCount = 10000;
+        const particleCount = 100000;
         let particlePosition = new Float32Array(particleCount*3);
         let randomness = 0.2;
-        let randomnessPower = 3;
-        let spin=1
+        let randomnessPower = 4;
+        let spin=2
         const color = new Float32Array(particleCount*3)
-        const insideColor = new THREE.Color('red')
-        const outsideColor = new THREE.Color('yellow')
+        const insideColor = new THREE.Color('rgb(252, 101, 101)')
+        const outsideColor = new THREE.Color('rgb(115, 187, 255)')
         for(let i =0;i<particleCount;i++){
 
             let randomX=Math.pow(Math.random(), randomnessPower)* (Math.random()<0.5?1:-1);
