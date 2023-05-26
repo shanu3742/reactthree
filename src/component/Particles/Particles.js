@@ -97,7 +97,7 @@ scene.add(particle)
        
         const tick = () => {
             let elapsedTime =  clock.getElapsedTime();
-            // particle.position.x=Math.sin(elapsedTime)
+            particle.position.x=Math.sin(elapsedTime)
             for(let i =0;i<pointCount;i++){
                 
            let i3 = i*3;
