@@ -103,6 +103,17 @@ const renderGame =React.useCallback( () => {
      * on screen  resize
      */
     rendrer.render(scene,camera)
+    /**
+     * add mouse move event listner 
+     */
+    const mouse = new THREE.Vector2()
+    window.addEventListener('mousemove',(event) => {
+       mouse.x=  (event.clientX/dimension.width)*2-1;
+       mouse.y=  -((event.clientY/dimension.height)*2-1);
+      
+    })
+
+    let intersectionPoint = null
     
 const clock = new THREE.Clock()
     const tick = () => {
@@ -112,13 +123,14 @@ const clock = new THREE.Clock()
         box1.position.y = Math.sin(elapsedTime+box1.position.x);
         box.position.y = Math.sin(elapsedTime+box.position.x);
         box2.position.y = Math.sin(elapsedTime+box2.position.x);
-        const rayPosition = new THREE.Vector3(-3,0,0);
-        const rayDirection = new THREE.Vector3(10,0,0)
-        rayDirection.normalize();
-        rayCaster.set(rayPosition,rayDirection);
+        rayCaster.setFromCamera(mouse,camera)
+//         const rayPosition = new THREE.Vector3(-3,0,0);
+//         const rayDirection = new THREE.Vector3(10,0,0)
+//         rayDirection.normalize();
+//         rayCaster.set(rayPosition,rayDirection);
         const testObject = [box,box1,box2]
         let intersectObjects= rayCaster.intersectObjects(testObject);
-        // console.log(intersectObjects)
+//         // console.log(intersectObjects)
         for (let object of testObject){
             object.material.color.set('red')
         }
@@ -126,6 +138,21 @@ for(let intersectItem of intersectObjects){
     // console.log(intersectItem)
     // let object = intersectItem.object;
     intersectItem.object.material.color= new THREE.Color('blue')
+}
+
+if(intersectObjects.length !==0){
+    // console.log('intersect happen');
+    if(intersectionPoint===null){
+        console.log('mouse enter')
+    }
+    intersectionPoint= intersectObjects[0]
+   
+}else {
+    if(intersectionPoint){
+        console.log('mouse leave')
+    }
+    intersectionPoint=null
+  
 }
         
         requestAnimationFrame(tick)
