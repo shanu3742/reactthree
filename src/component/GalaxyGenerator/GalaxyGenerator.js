@@ -2,12 +2,16 @@ import React, { useRef, useState } from 'react';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import * as THREE from 'three'
 
+
 const GalaxyGenerator = () => {
     const [dimension ,setDimension ] = useState({
         width:window.innerWidth,
         height:window.innerHeight
     })
-    const canvasRef = useRef()
+    const canvasRef = useRef();
+
+   
+    
 
     const drawGalaxy =React.useCallback( () => {
         const canvas = canvasRef.current;
@@ -46,7 +50,7 @@ const GalaxyGenerator = () => {
         let particlePosition = new Float32Array(particleCount*3);
         let randomness = 0.2;
         let randomnessPower = 4;
-        let spin=2
+        let spin=3
         const color = new Float32Array(particleCount*3)
         const insideColor = new THREE.Color('rgb(252, 101, 101)')
         const outsideColor = new THREE.Color('rgb(115, 187, 255)')
@@ -110,6 +114,7 @@ const GalaxyGenerator = () => {
 
     },[dimension.height,dimension.width])
     React.useEffect(() => {
+
         window.addEventListener('resize',() => {
             setDimension({
                 width:window.innerWidth,
@@ -123,9 +128,14 @@ const GalaxyGenerator = () => {
          drawGalaxy()
     },[drawGalaxy])
     return (
+       <div>
+<div>
+
+</div>
         <canvas ref= {canvasRef} width={dimension.width} height={dimension.height}>
            
-        </canvas>
+           </canvas>
+       </div>
     )
 }
 

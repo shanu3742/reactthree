@@ -3,11 +3,13 @@ import './App.css';
 import Particles from './component/Particles/Particles';
 import ParticlePracticeOne from './component/Particles/ParticlePracticeOne';
 import GalaxyGenerator from './component/GalaxyGenerator/GalaxyGenerator';
+import RayCaster from './component/RayCaster/RayCaster';
 
 function App() {
   return (
     <div className="App">
-      <GalaxyGenerator />
+      <RayCaster />
+      {/* <GalaxyGenerator /> */}
      {/* <ParticlePracticeOne/> */}
      {/* <Particles /> */}
     </div>
